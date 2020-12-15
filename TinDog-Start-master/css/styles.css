@@ -1,0 +1,118 @@
+#title {
+  background-color: #ff4c68;
+}
+#camera,
+#heart,
+#checkMark {
+  padding: 7% 15%;
+}
+#press {
+  background-color: #ef8172;
+  padding: 5px 7% 20px 7%;
+  text-align: center;
+}
+#camera:hover {
+  color: #ff4c68;
+}
+
+#heart:hover {
+  color: #ff4c68;
+}
+#checkMark:hover {
+  color: #ff4c68;
+}
+#testimonials {
+  background-color: #ef8172;
+  text-align: center;
+
+  color: #ffffff;
+}
+#pricing {
+  padding: 100px;
+}
+#features {
+  background-color: #ffffff;
+  position: relative;
+}
+#footer {
+  background-color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+}
+h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.5;
+  padding-bottom: 20px;
+  padding-top: 50px;
+}
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: xx-large;
+  color: #ffffff;
+}
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+.card-body h2 {
+  color: black;
+}
+.container-fluid {
+  padding: 3% 15% 7%;
+}
+.carousel-item {
+  padding: 7% 15%;
+}
+.testimonials-img {
+  border-radius: 100%;
+  width: 10%;
+  margin: 20px;
+}
+.navbar-brand {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.navbar {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.dog-image {
+  transform: rotate(30deg);
+  padding-top: 7%;
+  margin-left: 30%;
+  position: absolute;
+  right: 25%;
+  width: 60%;
+}
+@media (max-width: 1028px) {
+  .dog-image {
+    transform: rotate(0);
+    position: static;
+  }
+  #title {
+    text-align: center;
+  }
+}
+.feature-box {
+  text-align: center;
+}
+.second-container {
+  padding: 7% 15%;
+}
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+.cta {
+  background-color: #ff4c68;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #ffffff;
+}
