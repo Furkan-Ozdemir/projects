@@ -1,0 +1,47 @@
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f1f1f1;
+  height: 100%;
+  overflow: auto;
+}
+header h3{
+    margin-left: 6%;
+}
+#navbar{
+    position: fixed;
+    height: 100%;
+    width: 300px;
+    min-width: 290px; 
+    padding: 0;
+}
+section{
+    margin-left: 20%;
+}
+
+.li .nav-link {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+.li .nav-link:hover {
+  background-color: #555;
+  color: white;
+}
+@media only screen and (min-width:600px) and (max-width: 768px) {
+ section{
+     margin-left: 35%;
+ }
+ body{
+     font-size: small;
+ }
+}
+@media only screen and (min-width: 768px) and (max-width:992px) {
+    section{
+     margin-left: 40%;
+ }
+}

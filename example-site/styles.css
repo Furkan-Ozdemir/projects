@@ -1,0 +1,54 @@
+.form-group{
+    display: flex;
+}
+.navbar{
+  background-color:#FCF6F5 ;
+}
+a{
+  color: #7b9acc;
+}
+.card-header{
+  background-color:black;
+  color: white;
+}
+.row{
+  padding: 0 3%;
+}
+body{
+  background-color: #FCF6F5;
+}
+#form{
+   margin: 0 auto;
+  padding-top:10px;
+  
+}
+input[type="email"],input[type="submit"]{
+  border-radius:5px;
+  border-width:thin;
+}
+#videoNform{
+  display: flex;
+  flex-direction: column-reverse;
+}
+h3{
+  padding: 3% 0;
+}
+#video{
+  margin: 3% 0;
+}
+footer{
+  text-align: center;
+  margin-top: 3%;
+}
+
+.video{
+
+  text-align: center;
+}
+@media (min-width: 768px) and (max-width:991px){
+svg{
+  width:7em ;
+
+}
+ 
+}

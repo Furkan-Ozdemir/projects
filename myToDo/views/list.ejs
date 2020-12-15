@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <title>To Do List</title>
+</head>
+
+<body>
+
+    <div class="container-fluid ">
+        <h1 id="Heading">hava durumu ekle<%= date %></h1>
+    </div>
+
+    <div class="container-fluid date">
+        <% for(let i = 0 ; i < newListItems.length ; i++){ %>
+        <div class="item date">
+            <input type="checkbox">
+            <p> <%= newListItems[i] %></p><button class="deleteBtn" type="button" name="deleteBtn"><i
+                    class="fas fa-trash"></i></button>
+        </div>
+        <% } %>
+        <form action="/" method="POST">
+            <input placeholder="new item" type="text" name="newItem" autocomplete="off" id="newItemTextt">
+            <button class="submitBtn" type="submit" name="submitButton">+</button>
+        </form>
+    </div>
+    <footer>&copy;furco 2020</footer>
+</body>
+
+</html>
