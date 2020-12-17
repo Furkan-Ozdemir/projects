@@ -18,10 +18,7 @@
     margin: 0 auto;
     
 }
-.portraitImg{
-    margin-left: 90px;
-    margin-top: 90px;
-}
+
 .welcomeColumn{
     margin: 0 auto;
 }
@@ -35,6 +32,8 @@ img{
 .portraitImg{
     max-width: 100%;
     height: auto;
+    margin-left: 20%;
+    margin-top: 20%;
     
 }
 .cards{
@@ -118,22 +117,48 @@ body{
     
 
 }
-/* @media only screen and (max-width: 575px){
-    
-} */
-
-/* @media only screen and (min-width:1200px){
-
+ @media (max-width: 1024px){
+    .portraitImg{
+        margin-top: 25%;
+        max-width: 100%;
+        height: auto;
+        margin-left: 10px;
+    }
+} 
+@media (max-width: 768px){
+    .portraitImg{
+        margin-left:33px ;
+        max-width: 100%;
+        height: auto;
+    }
+    p.card-text{
+        font-size: 22px;
+    }
 }
-@media only screen and (min-width:992px) and (max-width:1200px){
-    
-} */
-/* @media only screen and (min-width:600px) and (max-width:992px){
-        .portraitImg{
-            max-width: 50%;
-            
-        }
+@media (max-width: 426px){
+    .portraitImg{
+        max-width: 100%;
+        height: auto;
+        margin-left: 60px;
+    }
+    p.card-text{
+       font-size: 8px;
+    }
+    h1{
+        font-size: 32px;
+    }
+    i.fa-3x{
+        font-size:1.5em;
+    }
 }
-@media only screen and (max-width:600px){
-
-} */
+@media (max-width:376px){
+    .portraitImg{
+        max-width: 100%;
+        height: auto;
+        margin-left: 36px;
+    }
+    i.fa-3x{
+        font-size:.875em;
+    }
+    
+}
