@@ -124,6 +124,9 @@ body{
         height: auto;
         margin-left: 10px;
     }
+    .card{
+        flex-direction: column;
+    }
 } 
 @media (max-width: 768px){
     .portraitImg{
@@ -153,12 +156,22 @@ body{
 }
 @media (max-width:376px){
     .portraitImg{
-        max-width: 100%;
+        max-width: 50%;
         height: auto;
-        margin-left: 36px;
+        margin-left: 95px ;
+        margin-top: 105px ;
     }
     i.fa-3x{
-        font-size:.875em;
+        font-size:1.5em;
     }
     
+    
+}
+@media (max-width:320px){
+    .portraitImg{
+        max-width: 50%;
+        height: auto;
+        margin-left: 77px ;
+        margin-top: 105px ;
+    }
 }
