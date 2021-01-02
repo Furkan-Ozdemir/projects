@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -16,10 +17,10 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
     const query = req.body.cityName;
-    const apiKey = "87cc56b891977c85416c370bca6506f6"
+
     const unit = "metric"
 
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apiKey + "&units=" + unit;
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + process.env.APIKEY + "&units=" + unit;
 
     https.get(url, function (response) { // fetch the data from external server
 
@@ -45,6 +46,6 @@ app.post("/", function (req, res) {
 })
 
 
-app.listen(3000, function () {
+app.listen(4000, function () {
     console.log("running on port 3000");
 })
