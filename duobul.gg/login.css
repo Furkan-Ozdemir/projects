@@ -1,0 +1,70 @@
+a {
+  color: black;
+}
+
+.steam-btn {
+  background-color: #c7d5e0;
+}
+.container-fluid {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+.login-form {
+  padding-left: 40%;
+}
+.form-check {
+}
+.login-page-btn {
+  margin: 1% 0;
+}
+.login-text {
+  font-family: "Dosis", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+.top-container {
+  background-color: #bedbbb;
+}
+.btn-container {
+}
+.footer {
+  background-color: #92817a;
+  padding-bottom: 5px;
+  height: 100vh;
+}
+.footer-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+#image {
+  background-color: #8db596;
+}
+.social-icons {
+  padding-top: 3%;
+  margin-left: 0;
+  margin-right: 0;
+}
+.fb-icon {
+  padding-left: 15%;
+}
+.ig-icon {
+  padding-right: 15%;
+}
+.row {
+  text-align: center;
+}
+.bottom-row {
+  padding-top: 3%;
+  padding-bottom: 2%;
+  font-size: small;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+.about-us {
+  padding-left: 15%;
+}
+.TOS {
+  padding-right: 15%;
+}

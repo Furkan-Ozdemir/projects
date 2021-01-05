@@ -1,0 +1,101 @@
+#title {
+  background-color: #707070;
+}
+#howItWorks {
+  background-color: #92817a;
+  padding-top: 1%;
+  padding-bottom: 5%;
+}
+#faq {
+  background-color: #bedbbb;
+}
+
+h2 {
+  padding: 5% 15%;
+  color: #ffffff;
+}
+a {
+  color: black;
+}
+header h3 {
+  text-align: center;
+  font-size: 3rem;
+  padding-bottom: 2%;
+}
+footer {
+  background-color: #bedbbb;
+}
+/*.lol-background {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("lol-karmasik.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+} */
+.ranked-symbols {
+  /* height: 50vh;*/
+  width: 20vw;
+}
+.card {
+  background-color: #ededed;
+}
+.faq-header {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  padding: 3% 0;
+}
+.challenger-symbol {
+  padding-top: 10%;
+}
+.cta {
+  font-family: "Source Sans Pro", sans-serif;
+  color: black;
+  font-size: 4rem;
+  text-align: center;
+  padding-top: 20%;
+}
+.strong-p {
+  font-family: "Source Sans Pro", sans-serif;
+
+  font-size: 2rem;
+}
+/*.overlay {
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.6);
+} */
+.log-in-btn {
+  padding-right: 7%;
+}
+.raging-kid {
+  padding: 5% 5% 16%;
+  width: 75%;
+}
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.row {
+  margin: 0;
+}
+.download-buttons {
+  padding: 5% 15%;
+}
+.how-it-works-row {
+  text-align: center;
+  padding: 1%;
+}
+.sign-up {
+  padding-top: 2%;
+  padding-bottom: 7%;
+
+  background-color: #8db596;
+}
+.challenger-img {
+  padding-left: 10%;
+}
