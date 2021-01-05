@@ -102,11 +102,25 @@ def common_words(book_name, book_name2):
     common_word_list = [word for word in words3 if
                         word in words6]  # this line finds the common words in both of the books
     # then prints it with for loops
+    not_common_word_list = [word for word in words3 if word not in words6] #finds the not common words
+
     for i in range(len(common_word_list)):
         print(str(i + 1) + "\t", end=" ")
 
         for j in range(len(common_word_list[i])):
             print(common_word_list[i][j], end="       ")
+
+        print()
+    # printing the distinct words
+    print("########################")
+    print("Book Names : " + book_name + "\t" + book_name2)
+    print("Distinct Words")
+    print("No\tFreq\tWord")
+    for i in range(stopValue):
+        print(str(i + 1) + "\t", end=" ")
+
+        for j in range(len(not_common_word_list[i])):
+            print(not_common_word_list[i][j], end="       ")
 
         print()
 
