@@ -1,6 +1,9 @@
 a {
   color: black;
 }
+body{
+  background-color:  #8db596;
+}
 
 .steam-btn {
   background-color: #c7d5e0;
@@ -28,6 +31,9 @@ a {
   background-color: #bedbbb;
 }
 .btn-container {
+}
+.login-section{
+  height: 80vh;
 }
 .footer {
   background-color: #92817a;

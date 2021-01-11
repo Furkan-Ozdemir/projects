@@ -1,0 +1,145 @@
+<%- include('partials/header') %>
+
+    <section id="title">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">DuoBul</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#howItWorks">Nasıl Çalışır </a>
+                        </li>
+                    </ul>
+                    <a href="/login" class="btn btn-light btn-lg log-in-btn" role="button">Giriş Yap</a>
+                    <a href="/register" class="btn btn-light btn-lg log-in-btn" role="button">Üye Ol</a>
+                </div>
+            </nav>
+
+            <!-- navbar end -->
+
+            <!--Introduction section -->
+            <div class="container-fluid">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img class="ranked-symbols" src="images/bronz-img.png" alt="bronze-img" />
+                        </div>
+                        <div class="col-lg-4">
+                            <p class="cta">
+                                Tek Başına Girip Yenilmekten Sıkıldın mı ? <br />
+                                <a class="btn btn-lg btn-dark" href="#howItWorks" role="button">Nasıl Çalışır</a>
+                                <a class="btn btn-lg btn-dark" href="/register" role="button">Kayıt Ol</a>
+                            </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <img class="ranked-symbols challenger-symbol" src="images/challenger.png"
+                                alt="challenger-img" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Introduction section end -->
+
+    <!--  how it works-->
+    <section id="howItWorks">
+        <div class="container-fluid">
+            <div class="row how-it-works-row">
+                <div class="col-lg-12">
+                    <h1 id="howItWorks">Nasıl Çalışır</h1>
+                </div>
+            </div>
+            <div class="row how-it-works-row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-2">
+                    <p class="strong-p">Kayıt Ol</p>
+                </div>
+                <div class="col-lg-2">
+                    <i class="fas fa-arrow-circle-right fa-3x"></i>
+                </div>
+                <div class="col-lg-2">
+                    <p class="strong-p">Benzer Yetekte Duonu Bul</p>
+                </div>
+                <div class="col-lg-2">
+                    <i class="fas fa-arrow-circle-right fa-3x"></i>
+                </div>
+                <div class="col-lg-2">
+                    <p class="strong-p">Oynamaya Başla</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- how it works end-->
+
+    <!-- sign up -->
+    <section id="signUp">
+        <div class="container-fluid sign-up">
+            <header>
+                <h3>Kayıt Ol</h3>
+            </header>
+
+            <div class="form-group home-register-button">
+
+                <a href="/register" class="btn btn-dark btn-lg">Kayıt Ol</a>
+
+
+            </div>
+
+
+
+        </div>
+    </section>
+    <!-- sign up end-->
+
+    <!-- SSS -->
+    <section id="faq">
+        <header class="faq-header">Sıkça Sorulan Sorular</header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Duom Trolledi</h5>
+                            <p class="card-text">
+                                Kötü oyuncuların her yerde karşımıza çıkabileceğinin
+                                farkındayız. Bunun için bu tip oyuncuları sitemizden
+                                raporladığınızda
+                                <strong>Ritonun aksine</strong> sistemimizden
+                                uzaklaştırmaktayız.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Kullanım Ücreti</h5>
+                            <p class="card-text">
+                                Toxic olmayan bir oyun deneyimi sağlamayı amaçlayan hizmetimiz
+                                tamamen <strong>ücretizdir.</strong><br /><br /><br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ban Yermiyim</h5>
+                            <p class="card-text">
+                                Sistemimiz tamamen Sihirdar Kurallarına paralel gittiği için
+                                hiçbir risk bulumamaktadır <br /><br /><br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('partials/footer') %>

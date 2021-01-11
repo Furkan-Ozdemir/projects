@@ -1,3 +1,6 @@
+body{
+  background-color:  #8db596;
+}
 #title {
   background-color: #707070;
 }
@@ -25,14 +28,7 @@ header h3 {
 footer {
   background-color: #bedbbb;
 }
-/*.lol-background {
-  height: 100vh;
-  width: 100vw;
-  background-image: url("lol-karmasik.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-} */
+
 .ranked-symbols {
   /* height: 50vh;*/
   width: 20vw;
@@ -60,6 +56,9 @@ footer {
   font-family: "Source Sans Pro", sans-serif;
 
   font-size: 2rem;
+}
+.register-signup{
+  height: 89vh;
 }
 /*.overlay {
   position: absolute;
@@ -91,11 +90,14 @@ footer {
   padding: 1%;
 }
 .sign-up {
-  padding-top: 2%;
+  padding-top: 5%;
   padding-bottom: 7%;
 
   background-color: #8db596;
 }
 .challenger-img {
   padding-left: 10%;
+}
+.home-register-button{
+  text-align: center;
 }
