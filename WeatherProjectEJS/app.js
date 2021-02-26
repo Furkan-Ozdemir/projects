@@ -36,10 +36,7 @@ app.post("/", function (req, res) {
             const icon = weatherData.weather[0].icon;
             console.log(icon);
             const iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
-            // res.write(`<p style>The weather is ${description} </p>`)
-            // res.write(`<h1>the temperature is in ${query} is  ${temp} degrees</h1>`)
-            // res.write(`<img src=${iconUrl}>`)
-            // res.send()
+
             res.render("index", { temp: temp, description: description, iconUrl: iconUrl, query: query })
         })
     })

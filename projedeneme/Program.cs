@@ -4,10 +4,11 @@ namespace projedeneme
 {
     class Program
     {
-        public static char[,,] board = new char[8, 9, 2];
+
+        public static char[,,] board = new char[8, 8, 2];
         public static char[,,] bluePieces = new char[2, 8, 2];
         public static char[,,] redPieces = new char[2, 8, 2];
-        static ConsoleKeyInfo cki, nightKey1, nightKey2, nightKey3;
+        static ConsoleKeyInfo cki, cki2, nightKey1, nightKey2, nightKey3;
 
         static int cursorx = 30, cursory = 11;
         static Boolean condition = true, conditionR = true;
@@ -16,7 +17,6 @@ namespace projedeneme
         {
 
 
-            // printBoard();
             printBoardArray();
 
             Console.SetCursorPosition(cursorx, cursory);
@@ -406,21 +406,54 @@ namespace projedeneme
             while (condition)
             {
                 cki = Console.ReadKey();
+                cki2 = Console.ReadKey();
 
-                if (cki.Key == ConsoleKey.RightArrow)
+                if (cki.Key == ConsoleKey.RightArrow && cki2.Key == ConsoleKey.RightArrow)
                 {
                     Console.SetCursorPosition(cursorx, cursory);
                     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                     Console.SetCursorPosition(cursorx, cursory);
                 }
-                if (cki.Key == ConsoleKey.LeftArrow)
+                if (cki.Key == ConsoleKey.LeftArrow && cki2.Key == ConsoleKey.LeftArrow)
                 {
                     Console.SetCursorPosition(cursorx, cursory);
                     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                     Console.SetCursorPosition(cursorx, cursory);
                 }
-                if (cki.Key == ConsoleKey.DownArrow)
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.DownArrow)
                 {
+                    //cursory = 3
+                    if (cursory != 3)
+                    {
+                        if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.')
+                        { // aşağısında nokta varsa
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            break;
+                        }
+                        else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] != '.') // nokta değil ama çaprazında düşman varsa hareket et çapraza
+                        {
+                            // sol alt çaprazı
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.SetCursorPosition(cursorx, cursory);
+                            break;
+                        }
+                    }
                     if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.')
                     { // aşağısında nokta varsa
                         cursory += 2;
@@ -448,8 +481,42 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                     }
                 }
-                if (cki.Key == ConsoleKey.UpArrow)
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.UpArrow)
                 {
+                    if (cursory != 13)
+                    {
+
+                        if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.')
+                        { // yukarısında nokta varsa
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+
+                            break;
+
+
+                        }
+                        else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] != '.')
+                        {
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.SetCursorPosition(cursorx, cursory);
+                            break;
+                        }
+                    }
                     if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.')
                     { // yukarısında nokta varsa
                         cursory -= 2;
@@ -480,6 +547,230 @@ namespace projedeneme
                     }
 
                 }
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.LeftArrow)
+                { // sol çapraza hareket. sol çapraz noktaysa ilerle --- 1 üst 1 sol ---.
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            break;
+                        }
+                        else
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            break;
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                        break;
+                    }
+
+                }
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.RightArrow)
+                { // sağ çapraz. 1 sağ 1 üst
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.LeftArrow)
+                { // sol alt çapraz 1 alt 1 sol
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.RightArrow)
+                { // sağ alt çapraz 1 alt 1 sağ
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'P';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+
+
                 if (cki.Key == ConsoleKey.Spacebar)
                 {
                     Console.SetCursorPosition(cursorx, cursory);
@@ -497,7 +788,7 @@ namespace projedeneme
 
                 if (cki.Key == ConsoleKey.RightArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) + 1, 1]))
                     { // burası modifiye edilecek daha sonra düşman taşa göre
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -538,35 +829,10 @@ namespace projedeneme
                             //Console.SetCursorPosition(cursorx, cursory);
                         }
                         Console.SetCursorPosition(cursorx, cursory);
-                        // cursorx += 5;
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // Console.SetCursorPosition(cursorx - 5, cursory);
-                        // Console.Write('.');
-                        // cursorx -= 5;
-                        // board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
-                        // cursorx += 5;
-                        // board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'R';
-                        // if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 1] == 'r')
-                        // {
-                        //     board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        //     Console.ForegroundColor = ConsoleColor.Red;
-                        //     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
-                        //     Console.ForegroundColor = ConsoleColor.White;
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        // }
-                        // else
-                        // {
-                        //     board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        //     Console.ForegroundColor = ConsoleColor.Blue;
-                        //     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
-                        //     Console.ForegroundColor = ConsoleColor.White;
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        // }
+
 
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] != '.')
+                    else
                     {
 
                         Console.SetCursorPosition(cursorx, cursory);
@@ -576,7 +842,8 @@ namespace projedeneme
                 }
                 if (cki.Key == ConsoleKey.LeftArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.')
+
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) - 1, 1]))
                     {
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -608,33 +875,8 @@ namespace projedeneme
                             Console.SetCursorPosition(cursorx, cursory);
                             Console.ForegroundColor = ConsoleColor.White;
                         }
-
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // Console.Write('.');
-                        // board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
-                        // cursorx -= 5;
-                        // board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'R';
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
-                        // {
-                        //     Console.ForegroundColor = ConsoleColor.Red;
-                        //     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        //     Console.ForegroundColor = ConsoleColor.White;
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        // }
-                        // else
-                        // {
-                        //     Console.ForegroundColor = ConsoleColor.Red;
-                        //     Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        //     Console.ForegroundColor = ConsoleColor.White;
-                        //     Console.SetCursorPosition(cursorx, cursory);
-                        // }
-
-                        // Console.Write(cursorx + " " + cursory);
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] != '.')
+                    else
                     {
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
@@ -644,7 +886,7 @@ namespace projedeneme
 
                 if (cki.Key == ConsoleKey.DownArrow)
                 {
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1), 1]))
                     { // aşağısında nokta varsa
 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
@@ -686,18 +928,6 @@ namespace projedeneme
                         }
                         Console.SetCursorPosition(cursorx, cursory);
 
-                        // cursory += 2;
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // Console.SetCursorPosition(cursorx, cursory - 2);
-                        // Console.Write('.');
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // cursory -= 2;
-                        // board[(cursory / 2), ((cursorx / 5) - 1)] = '.';
-                        // cursory += 2;
-                        // board[(cursory / 2), ((cursorx / 5) - 1)] = 'R';
-                        // Console.SetCursorPosition(cursorx, cursory);
-                        // Console.Write(board[(cursory / 2), ((cursorx / 5) - 1)]);
-                        // Console.SetCursorPosition(cursorx, cursory);
 
                     }
                     else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] != '.')
@@ -709,7 +939,7 @@ namespace projedeneme
                 }
                 if (cki.Key == ConsoleKey.UpArrow)
                 {
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1), 1]))
                     { // yukarısında nokta varsa
 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
@@ -783,7 +1013,7 @@ namespace projedeneme
 
                 if (nightKey1.Key == ConsoleKey.UpArrow && nightKey2.Key == ConsoleKey.UpArrow && nightKey3.Key == ConsoleKey.LeftArrow)
                 { // 2 üst 1 sol hareketi
-                    if (board[(cursory / 2) - 2, ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2) - 2, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 2, ((cursorx / 5) - 1) - 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -804,6 +1034,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -824,6 +1055,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -833,12 +1065,13 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
 
                 }
                 if (nightKey1.Key == ConsoleKey.UpArrow && nightKey2.Key == ConsoleKey.UpArrow && nightKey3.Key == ConsoleKey.RightArrow)
                 { // 2 üst 1 sağ
-                    if (board[(cursory / 2) - 2, ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2) - 2, ((cursorx / 5) - 1) + 1, 0] == '.' || ((board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 2, ((cursorx / 5) - 1) + 1, 1])))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -859,6 +1092,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -879,6 +1113,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -888,11 +1123,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.LeftArrow && nightKey2.Key == ConsoleKey.LeftArrow && nightKey3.Key == ConsoleKey.UpArrow)
                 { // 1 üst 2 sol
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -913,6 +1149,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -933,6 +1170,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -942,11 +1180,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.RightArrow && nightKey2.Key == ConsoleKey.RightArrow && nightKey3.Key == ConsoleKey.UpArrow)
                 { // 1 üst 2 sağ
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 2, 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 2, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 2, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -967,6 +1206,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -987,6 +1227,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -996,11 +1237,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.DownArrow && nightKey2.Key == ConsoleKey.DownArrow && nightKey3.Key == ConsoleKey.LeftArrow)
                 {// 2 aşağı 1 sol
-                    if (board[(cursory / 2) + 2, ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2) + 2, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 2, ((cursorx / 5) - 1) - 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1021,6 +1263,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1041,6 +1284,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -1050,11 +1294,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.DownArrow && nightKey2.Key == ConsoleKey.DownArrow && nightKey3.Key == ConsoleKey.RightArrow)
                 { // 2 aşağı bir sağ
-                    if (board[(cursory / 2) + 2, ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2) + 2, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 2, ((cursorx / 5) - 1) + 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1075,6 +1320,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1095,6 +1341,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -1104,11 +1351,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.LeftArrow && nightKey2.Key == ConsoleKey.LeftArrow && nightKey3.Key == ConsoleKey.DownArrow)
                 { // 1 aşağı 2 sol
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 0] == '.' || ((board[(cursory / 2), ((cursorx / 5) - 1), 1]) != (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 2, 1])))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1130,6 +1378,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1150,19 +1399,21 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
                     }
-                    else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] != '.')
+                    else
                     {
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.RightArrow && nightKey2.Key == ConsoleKey.RightArrow && nightKey3.Key == ConsoleKey.DownArrow)
                 {// 1aşağı 2 sağ
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 2, 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 2, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 2, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1183,6 +1434,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1203,6 +1455,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -1212,6 +1465,7 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (nightKey1.Key == ConsoleKey.Spacebar && nightKey2.Key == ConsoleKey.Spacebar && nightKey3.Key == ConsoleKey.Spacebar)
@@ -1331,7 +1585,7 @@ namespace projedeneme
 
                 if (nightKey1.Key == ConsoleKey.UpArrow && nightKey2.Key == ConsoleKey.LeftArrow)
                 { // sol çapraza hareket. sol çapraz noktaysa ilerle --- 1 üst 1 sol ---.
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1387,7 +1641,7 @@ namespace projedeneme
 
                 if (nightKey1.Key == ConsoleKey.UpArrow && nightKey2.Key == ConsoleKey.RightArrow)
                 { // sağ çapraz. 1 sağ 1 üst
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1442,7 +1696,7 @@ namespace projedeneme
 
                 if (nightKey1.Key == ConsoleKey.DownArrow && nightKey2.Key == ConsoleKey.LeftArrow)
                 { // sol alt çapraz 1 alt 1 sol
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1497,7 +1751,7 @@ namespace projedeneme
 
                 if (nightKey1.Key == ConsoleKey.DownArrow && nightKey2.Key == ConsoleKey.RightArrow)
                 { // sağ alt çapraz 1 alt 1 sağ
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 1]))
                     { // 
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1570,7 +1824,7 @@ namespace projedeneme
 
                 if (cki.Key == ConsoleKey.RightArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) + 1, 1]))
                     {
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1589,6 +1843,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1607,20 +1862,22 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] != '.')
+                    else
                     {
                         // şu anlık taş yeme yapmıyor
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (cki.Key == ConsoleKey.LeftArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) - 1, 1]))
                     {
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1636,6 +1893,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1651,21 +1909,23 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
                         //Console.Write(cursorx + " " + cursory);
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] != '.')
+                    else
                     {
                         // şu anlık taş yeme yapmıyor
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (cki.Key == ConsoleKey.DownArrow)
                 {
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1), 1]))
                     { // aşağısında nokta varsai
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1685,6 +1945,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1704,6 +1965,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -1713,11 +1975,12 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
                 }
                 if (cki.Key == ConsoleKey.UpArrow)
                 {
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1), 1]))
                     { // yukarısında nokta varsa
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1737,6 +2000,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
                         else
                         {
@@ -1756,6 +2020,7 @@ namespace projedeneme
                             Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
+                            break;
                         }
 
 
@@ -1766,6 +2031,7 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                         Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
                         Console.SetCursorPosition(cursorx, cursory);
+                        break;
                     }
 
                 }
@@ -1786,10 +2052,11 @@ namespace projedeneme
             while (conditionR)
             {
                 cki = Console.ReadKey();
+                cki2 = Console.ReadKey();
 
-                if (cki.Key == ConsoleKey.RightArrow)
+                if (cki.Key == ConsoleKey.RightArrow && cki2.Key == ConsoleKey.RightArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.')
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) + 1, 1]))
                     { // burası modifiye edilecek daha sonra düşman taşa göre
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1829,7 +2096,7 @@ namespace projedeneme
                         }
 
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) + 1, 0] != '.')
+                    else
                     {
                         // şu anlık taş yeme yapmıyor
                         Console.SetCursorPosition(cursorx, cursory);
@@ -1837,9 +2104,9 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                     }
                 }
-                if (cki.Key == ConsoleKey.LeftArrow)
+                if (cki.Key == ConsoleKey.LeftArrow && cki2.Key == ConsoleKey.LeftArrow)
                 {
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.')
+                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2), ((cursorx / 5) - 1) - 1, 1]))
                     {
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1873,7 +2140,7 @@ namespace projedeneme
                         }
                         //Console.Write(cursorx + " " + cursory);
                     }
-                    if (board[(cursory / 2), ((cursorx / 5) - 1) - 1, 0] != '.')
+                    else
                     {
                         // şu anlık taş yeme yapmıyor
                         Console.SetCursorPosition(cursorx, cursory);
@@ -1882,9 +2149,9 @@ namespace projedeneme
                     }
                 }
 
-                if (cki.Key == ConsoleKey.DownArrow)
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.DownArrow)
                 {
-                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1), 1]))
                     { // aşağısında nokta varsa
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1934,9 +2201,9 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                     }
                 }
-                if (cki.Key == ConsoleKey.UpArrow)
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.UpArrow)
                 {
-                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.')
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1), 1]))
                     { // yukarısında nokta varsa
                         if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
                         {
@@ -1976,10 +2243,6 @@ namespace projedeneme
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.SetCursorPosition(cursorx, cursory);
                         }
-
-
-
-
                     }
                     else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1), 0] != '.')
                     {
@@ -1988,6 +2251,222 @@ namespace projedeneme
                         Console.SetCursorPosition(cursorx, cursory);
                     }
 
+                }
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.LeftArrow)
+                {
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) - 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+                if (cki.Key == ConsoleKey.UpArrow && cki2.Key == ConsoleKey.RightArrow)
+                { // sağ çapraz. 1 sağ 1 üst
+                    if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory -= 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory + 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory += 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory -= 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) - 1, ((cursorx / 5) - 1) + 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.LeftArrow)
+                { // sol alt çapraz 1 alt 1 sol
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx -= 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) - 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
+                }
+                if (cki.Key == ConsoleKey.DownArrow && cki2.Key == ConsoleKey.RightArrow)
+                { // sağ alt çapraz 1 alt 1 sağ
+                    if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] == '.' || (board[(cursory / 2), ((cursorx / 5) - 1), 1] != board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 1]))
+                    { // 
+                        if (board[(cursory / 2), ((cursorx / 5) - 1), 1] == 'r')
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'r';
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+                        else
+                        {
+                            cursory += 2;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            Console.SetCursorPosition(cursorx, cursory - 2);
+                            Console.Write('.');
+                            Console.SetCursorPosition(cursorx, cursory);
+                            cursory -= 2;
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = '.';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'w';
+                            cursory += 2;
+                            cursorx += 5;
+                            Console.SetCursorPosition(cursorx, cursory);
+                            board[(cursory / 2), ((cursorx / 5) - 1), 0] = 'Q';
+                            board[(cursory / 2), ((cursorx / 5) - 1), 1] = 'b';
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.SetCursorPosition(cursorx, cursory);
+                        }
+
+
+                    }
+                    else if (board[(cursory / 2) + 1, ((cursorx / 5) - 1) + 1, 0] != '.')
+                    {
+                        Console.SetCursorPosition(cursorx, cursory);
+                        Console.Write(board[(cursory / 2), ((cursorx / 5) - 1), 0]);
+                        Console.SetCursorPosition(cursorx, cursory);
+                    }
                 }
                 if (cki.Key == ConsoleKey.Spacebar)
                 {

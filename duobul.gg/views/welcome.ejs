@@ -1,4 +1,27 @@
 <%- include('partials/header') %>
-    <h1>welcome</h1>
-    <a class="btn btn-lg btn-dark" href="/logout">çıkış yap</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <h1>DuoBul</h1>
+            </li>
+            <li class="nav-item active">
+                <a class="btn btn-lg btn-primary" href="/logout">çıkış yap</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- profile picture -->
+    <div class="container-fluid">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="images/profile-pic.jpg" alt="profile_pic">
+            <div class="card-body">
+                <h5 class="card-title">User Name</h5>
+                <label for="img">Update your pic:</label>
+                <input class="form-control-file border" type="file" id="img" name="img" accept="image/*">
+            </div>
+        </div>
+    </div>
+    <!-- profile picture end-- -->
+
     <%- include('partials/footer') %>
