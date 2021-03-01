@@ -6,8 +6,8 @@ namespace projedeneme
     {
 
         public static char[,,] board = new char[8, 8, 2];
-        public static char[,,] bluePieces = new char[2, 8, 2];
-        public static char[,,] redPieces = new char[2, 8, 2];
+        // public static char[,,] bluePieces = new char[2, 8, 2];
+        // public static char[,,] redPieces = new char[2, 8, 2];
         static ConsoleKeyInfo cki, cki2, nightKey1, nightKey2, nightKey3;
 
         static int cursorx = 30, cursory = 11;
@@ -32,7 +32,7 @@ namespace projedeneme
 
                 cki = Console.ReadKey();
 
-                if (cki.Key == ConsoleKey.RightArrow)
+                if (cki.Key == ConsoleKey.RightArrow && cursorx < 40)
                 {
 
 
@@ -161,7 +161,6 @@ namespace projedeneme
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write(board[(cursory / 2) - 1, (cursorx / 5) - 1, 0]);
                             Console.ForegroundColor = ConsoleColor.White;
-
                         }
                         else
                         {
@@ -278,40 +277,39 @@ namespace projedeneme
 
         public static void printBoardArray()
         {
-            bluePieces[0, 0, 0] = 'R';
-            bluePieces[0, 1, 0] = 'N';
-            bluePieces[0, 2, 0] = 'B';
-            bluePieces[0, 3, 0] = 'Q';
-            bluePieces[0, 4, 0] = 'K';
-            bluePieces[0, 5, 0] = 'B';
-            bluePieces[0, 6, 0] = 'N';
-            bluePieces[0, 7, 0] = 'R';
+            // bluePieces[0, 0, 0] = 'R';
+            // bluePieces[0, 1, 0] = 'N';
+            // bluePieces[0, 2, 0] = 'B';
+            // bluePieces[0, 3, 0] = 'Q';
+            // bluePieces[0, 4, 0] = 'K';
+            // bluePieces[0, 5, 0] = 'B';
+            // bluePieces[0, 6, 0] = 'N';
+            // bluePieces[0, 7, 0] = 'R';
 
-            for (int i = 0; i < 8; i++)
-            {
-                bluePieces[1, i, 0] = 'P';
+            // for (int i = 0; i < 8; i++)
+            // {
+            //     bluePieces[1, i, 0] = 'P';
 
-                bluePieces[0, i, 1] = 'b';
-                bluePieces[1, i, 1] = 'b';
-            }
+            //     bluePieces[0, i, 1] = 'b';
+            //     bluePieces[1, i, 1] = 'b';
+            // }
 
 
-            redPieces[0, 0, 0] = 'R';
-            redPieces[0, 1, 0] = 'N';
-            redPieces[0, 2, 0] = 'B';
-            redPieces[0, 3, 0] = 'Q';
-            redPieces[0, 4, 0] = 'K';
-            redPieces[0, 5, 0] = 'B';
-            redPieces[0, 6, 0] = 'N';
-            redPieces[0, 7, 0] = 'R';
+            // redPieces[0, 0, 0] = 'R';
+            // redPieces[0, 1, 0] = 'N';
+            // redPieces[0, 2, 0] = 'B';
+            // redPieces[0, 3, 0] = 'Q';
+            // redPieces[0, 4, 0] = 'K';
+            // redPieces[0, 5, 0] = 'B';
+            // redPieces[0, 6, 0] = 'N';
+            // redPieces[0, 7, 0] = 'R';
 
-            for (int i = 0; i < 8; i++)
-            {
-                redPieces[1, i, 0] = 'P';
-
-                redPieces[0, i, 1] = 'r';
-                redPieces[1, i, 1] = 'r';
-            }
+            // for (int i = 0; i < 8; i++)
+            // {
+            //     redPieces[1, i, 0] = 'P';
+            //     redPieces[0, i, 1] = 'r';
+            //     redPieces[1, i, 1] = 'r';
+            // }
 
             board[0, 0, 0] = 'R';
             board[0, 1, 0] = 'N';
@@ -401,8 +399,11 @@ namespace projedeneme
 
         }
 
+        /* PİYON HAREKETİNE BAK */
         public static void movePawn()
-        {
+        { /* 
+        çapraz giderken rakip taş varsa ilerle
+        */
             while (condition)
             {
                 cki = Console.ReadKey();
