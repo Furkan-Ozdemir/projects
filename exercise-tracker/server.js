@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
+
 require('dotenv').config()
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 // Date yapılmadı null geliyor default çalışmıyor
-app.use(cors())
+
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -27,7 +27,7 @@ const Exercise = new mongoose.model("Exercise", exerciseSchema)
 const User = new mongoose.model("User", userSchema)
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/app.html')
+    res.sendFile(__dirname + '/views/index.html')
 });
 
 app.get("/api/exercise/users", function (req, res) {
