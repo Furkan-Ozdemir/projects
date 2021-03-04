@@ -1,37 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercise Tracker | Free Code Camp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
     <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
         type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Exercise tracker</h1>
+        <a href="/" style="text-decoration: none; color: #000;">
+            <h1 id="h1">Assing.it</h1>
+        </a>
+        <div class="explainer">
+
+            <p>
+                An assingment app for your business
+            </p>
+
+
+        </div>
         <form action="/api/exercise/new-user" method="post">
-            <h3>Create a New User</h3>
-            <p><code>POST /api/exercise/new-user</code></p>
-            <input id="uname" type="text" name="username" placeholder="username">
-            <input type="submit" value="Submit">
+            <strong>
+                <p class="text-center">Add your employees<img class="down-arrow-add" src="/img/down-arrow.svg" alt="a">
+                </p>
+            </strong>
+            <div class="form-group">
+                <input id="uname" type="text" name="username" placeholder="Employee name">
+                <input type="submit" value="Add">
+            </div>
         </form>
+
+        <div class="explainer">
+            <p>
+                then <br>
+            </p>
+        </div>
+
         <form action="/api/exercise/add" method="post">
-            <h3>Add exercises</h3>
-            <p><code>POST /api/exercise/add</code></p>
-            <input id="uid" type="text" name="userId" placeholder="userId*">
-            <input id="desc" type="text" name="description" placeholder="description*">
-            <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
-            <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)">
-            <input type="submit" value="Submit">
+
+            <strong>
+                <p class="text-center">
+                    Assign jobs to your employees <img class="down-arrow" src="/img/group (2).svg" alt="a">
+                </p>
+            </strong>
+            <div class="form-group">
+
+                <input id="uid" type="text" name="userId" placeholder="Employee Id*">
+                <input id="desc" type="text" name="description" placeholder="Description*">
+                <input id="dur" type="text" name="duration" placeholder="Duration* (mins.)">
+                <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)">
+                <input type="submit" value="Add">
+            </div>
         </form>
+
+        <div class="cta">
+            <p>Do you have a different implementation on your mind like: </p>
+            <ul>
+                <li>Assigning exercises to your fitness trainees</li>
+                <li>Giving assingments to your students</li>
+                <li>Adding classes to your students</li>
+                <p> and for much more <a href="#contact">contact us </a></p>
+            </ul>
+        </div>
+        <!-- 
         <p><strong>GET users's exercise log:
             </strong><code>GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
         <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
-        <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+        <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p> -->
     </div>
+    <!-- <p><div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a
+            href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div></p> -->
 </body>
 
 </html>

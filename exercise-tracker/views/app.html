@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="https://cdn.freecodecamp.org/universal/favicons/favicon-32x32.png"
+        type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light  bg-transparent">
+        <div class="container-fluid">
+            <a class="navbar-brand text-dark" href="/">Assign.it</a>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-sm-12 sell-it">
+            <h3 class="text-center header">Assign.it</h3>
+            <p class="text-center header-explainer">an easy, diverse tool for your business</p>
+            <p class="text-center">establish a good workflow <img class="workflow" src="/img/workflow.svg" alt="">
+                <br>
+            </p>
+            <div class="steps-container">
+                <p class="text-center"><img class="steps" src="/img/steps.svg" alt="">increase efficiency</p>
+
+            </div>
+
+
+
+        </div>
+        <div class="col-sm-12 add-col ">
+            <div class="container">
+
+                <p class="text-center">add your employees <img class="down-arrow-add" src="/img/down-arrow.svg" alt="">
+                </p>
+                <form action="/api/exercise/new-user" method="POST">
+                    <div class="form-group">
+                        <input id="uname" class="form-control" type="text" name="username" placeholder="Employee name">
+                    </div>
+                    <div class="btn-container">
+
+                        <input type="submit" class="btn btn-md btn-outline-dark" value="Add">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-12 explainer-col">
+            <div class="container">
+
+                <div class="assign-explainer">
+                    <p class="text-center"><img class="employees" src="/img/group (2).svg" alt="employees">Assign jobs
+                        to
+                        your employees </p>
+                </div>
+                <form action="/api/exercise/add" method="POST">
+                    <div class="form-group ">
+                        <input id="uid" class="form-control" type="text" name="userId" placeholder="Employee Id*">
+                    </div>
+                    <div class="form-group">
+                        <input id="desc" class="form-control" type="text" name="description" placeholder="Description*">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="dur" class="form-control" type="text" name="duration"
+                            placeholder="Duration* (mins.)">
+                    </div>
+                    <div class="form-group">
+                        <input id="dat" class="form-control" type="text" name="date" placeholder="date (yyyy-mm-dd)">
+                    </div>
+
+                    <div class="btn-container">
+
+                        <input type="submit" class="btn btn-md btn-outline-dark" value="Assign">
+                    </div>
+                </form>
+                <p class="text-center" style="padding-top: 5vh;">keep things organised</p>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-12 cta">
+
+            <p>Do you have a different implementation on your mind like: </p><br>
+            <ul>
+                <li class="first-li">
+                    <p id="use_this">
+                        <img class="strong" src="/img/strong.svg" alt=""> Using this app for your fitness bussines
+                    </p>
+                    <ul>
+                        <li class="school-li">
+                            <p>Assign exercises to your fitness customers <img class="fitness-img"
+                                    src="/img/fitness.svg" alt=""> </p>
+                        </li>
+                    </ul>
+                </li>
+                <br><br>
+                <br><br>
+
+                <li>
+                    <p>Use it for your school stuff <img class="bag" src="/img/bag.svg" alt=""></p>
+                    <ul><br>
+                        <li class="school-li">
+                            <p><img class="school" src="/img/graduation-hat.svg" alt="">assign homework
+                                to your students</p>
+                        </li>
+                        <br>
+                        <li class="school-li">
+                            <p>manage the schedule of teachers as a staff manager<img class="calendar-img"
+                                    src="/img/calendar.svg" alt=""></p>
+                        </li><br>
+                    </ul>
+                    <p> and for much more <a href="#">contact us </a></p>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+    <footer class="text-center">
+        <i class="far fa-copyright"></i> furco
+    </footer>
+
+</body>
+
+</html>

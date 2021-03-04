@@ -1,59 +1,200 @@
 * {
-  box-sizing: border-box;
-}
-
-body {
-  font-family:sans-serif;
-  margin: 25px;
-  color: #222;
-  background-color: #f5f5f5;
-}
-
-h1 {
-  font-weight: bold;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
   
 }
+body{
+background: hsla(183, 65%, 88%, 1);
 
-p {
-  max-width: 900px;
+background: linear-gradient(90deg, hsla(183, 65%, 88%, 1) 21%, hsla(340, 68%, 88%, 1) 68%, hsla(342, 72%, 85%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(183, 65%, 88%, 1) 21%, hsla(340, 68%, 88%, 1) 68%, hsla(342, 72%, 85%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(183, 65%, 88%, 1) 21%, hsla(340, 68%, 88%, 1) 68%, hsla(342, 72%, 85%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CCF2F4", endColorstr="#F5CBD9", GradientType=1 );
+}
+li{ 
+   list-style: none;
+}
+h3 {
+  font-weight: bold;
 }
 
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: #87D37C;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 5px;
+
+a{
+  text-decoration: none;
+}
+.explainer{
+  text-align: center;
+}
+.employees{
+  width: 15vw ;
+  padding-bottom: 2%;
+  margin-right: 4%;
+}
+.strong{
+  width: 14vw;
+  margin-right: 4%;
+}
+.down-arrow-add{
+  width: 12vw ;
+  margin-left: 7%;
+  margin-top: 7%;
+}
+.row{
+  margin-right: 0;
 }
 
-input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
+.assign-explainer{
+  padding-top: 12vh;
+}
+.form-group{
+  margin-bottom: 1vh;
+}
+.explainer-col{
+
+border-radius: 5px;
+height:auto;
+
+}
+.cta{
+  padding-top: 22vh;
+  height: auto;
+   
+
+}
+.header{
+  padding-bottom: 4vh;
+}
+.fitness-img{
+  width: 15vw;
+  margin-left: 7%;
+}
+.bag{
+  width: 15vw;
+  margin-left: 7%;
+}
+.calendar-img{
+    width: 15vw;
+  margin-left: 7%;
+}
+.school{
+  width: 15vw;
+  margin-right: 4%;
+}
+.school-li{
+  margin-left: -3vh;
 }
 
-input[type=submit] {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: #E4F1FE;
-  border: 1px solid grey;
-  box-shadow: 2px 2px #999;
-  cursor: pointer;
+
+.sell-it{
+  height: 100vh;
+  padding-top: 25vh;
+ 
+}
+.workflow{
+  width: 13vw;
+  margin-left: 7%;
+}
+.steps{
+   width: 13vw;
+  margin-right: 7%;
+}
+.steps-container{
+  margin-top: 5vh;
+}
+.cta p:first-child{
+  padding-left: 4vw;
 }
 
-input[type=submit]:hover {
-  background-color: #FFFEC4;
+.add-col
+{
+  height: auto;
+
+}
+.header-explainer{
+  padding-top: 3vh;
+  padding-bottom: 10vh;
+}
+.btn-container{
+  text-align: center;
+  margin-bottom: 2vh;
+  margin-top: 3vh;
 }
 
-code {
-  font-family: monospace;
-  font-size: 1.2em;
-  background-color: #FFFEC4;
-  padding: 2px;
+@media only screen and (min-width:780px) and (max-width: 1024px){
+input[type=text]{
+  width: 60vw;
+}
+.form-group{
+  padding-left: 15vw;
+}
+p{
+  font-weight:400 ;
+  font-size: x-large;
+}
+li{
+  font-size: large;
+ 
+}
+
+.cta{
+  text-align: center;
+}
+
+}
+@media only screen and (min-width:321px) and (max-width:426px){
+  .fitness-img{
+   margin-left: 30vw;
+  }
+}
+@media only screen and (min-width:427px) and (max-width:769px){
+  .cta{
+    text-align: center;
+  }
+  p, li{
+    font-size: large;
+  }
+  .first-li{
+    margin-bottom: 15vh;
+  }
+  .fitness-img,.calendar-img,.school,.workflow,.steps,.down-arrow-add,.employees,.bag,.strong{
+    width: 11vw;
+  }
+  .school{
+    margin-left: -21vw;
+  }
+  #use_this{
+    margin-left: -21vw;
+  }
+ 
+}
+@media only screen and (min-width:770px) and (max-width:1025px){
+.steps-container{
+margin-bottom: 10vh;
+}
+.sell-it{
+  height: auto;
+}
+}
+@media only screen and (min-width:1026px) and (max-width:1537px){
+p ,li{
+  font-size: x-large;
+}
+.sell-it{
+  height: auto;
+}
+input[type=text]{
+  width: 60vw;
+}
+.form-group{
+  padding-left: 15vw;
+}
+.cta{
+  text-align: center;
+}
+.fitness-img,.calendar-img,.school,.workflow,.steps,.down-arrow-add,.employees,.bag,.strong{
+    width: 11vw;
+  }
 }
